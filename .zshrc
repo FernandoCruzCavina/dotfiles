@@ -102,9 +102,21 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-eval "$(starship init zsh)"
+alias cat="bat --theme=TwoDark --color=always --style=numbers,header --line-range=:500"
+alias fzf='fzf --style=full --preview="bat --color=always --style=numbers,header --line-range=:500 {}"'
+alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias cd="z"
+#alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+#alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 export PATH="$HOME/bin:$PATH"
+#export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(rbenv init -)"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

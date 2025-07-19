@@ -1,3 +1,5 @@
+/*@import "~/.cache/wal/colors-waybar.css";*/
+
 * {
   font-family: JetBrainsMono, monospace;
   color: #e5e9f0;
@@ -22,7 +24,6 @@
 
 #outer-box {
   padding: 20px;
-}
 
 #img {
   margin-right: 6px;
