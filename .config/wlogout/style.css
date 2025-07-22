@@ -1,0 +1,57 @@
+
+
+window {
+    font-family: JetBrainsMono Nerd Font Mono;
+    font-size: 20px;
+    background-color: rgba(30, 30, 46, 0.6);
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    background-color: rgba(200, 220, 255, 0);
+    color: #c2aaff;
+    border-radius: 50px;
+    border: none;
+}
+
+button:focus {
+    background-size: 30%;
+}
+
+button:hover {
+    background-color: #3700b3; 
+    background-size: 70%;
+    margin: 5px;
+    border-radius: 50px;
+}
+
+button span {
+    font-size: 1.2em;
+}
+
+
+#lock {
+    background-image: image(url("./icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("./icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("./icons/suspend.png"));
+}
+
+#shutdown {
+    background-image: image(url("./icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("./icons/reboot.png"));
+}
+
+#hibernate {
+    background-image: image(url("./icons/hibernate.png"));
+}

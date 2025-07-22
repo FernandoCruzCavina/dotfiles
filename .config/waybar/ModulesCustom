@@ -138,7 +138,7 @@
   "max-length": 30,
 //"exec": "playerctl metadata --format '{\"text\": \" {{title}} - {{artist}}\", \"tooltip\": \"{{playerName}} - {{status}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
   "exec": "$HOME/.config/hypr/scripts/mpd-status.sh",
-  "interval": 2,
+  "interval": 10,
   "on-click-middle": "playerctl play-pause",
   "on-click": "playerctl previous",
   "on-click-right": "playerctl next",

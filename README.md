@@ -1,6 +1,6 @@
 # dotfiles
 
--if you don't have AUR helper yay and paru, follow the commands 
+-if you don't have AUR helper yay and paru, follow the commands below 
 
 ```bash
 sudo pacman -S --needed base-devel git

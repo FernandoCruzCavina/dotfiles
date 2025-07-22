@@ -190,7 +190,7 @@
 		"class<waterfox|waterfox-bin>": " ",
 		"class<microsoft-edge>": " ",
 		"class<Chromium|Thorium|[Cc]hrome>": " ",
-		"class<brave-browser>": "🦁 ",
+		"class<brave-browser>": " ",
 		"class<tor browser>": " ",
 		"class<firefox-developer-edition>": "🦊 ",
 
@@ -233,8 +233,8 @@
 		"title<virtualbox>": "💽 ",
 		"class<remmina>": "🖥️ ",
 
-		"class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞 ",
-    "class<dev.zed.Zed>": "󰵁",
+		"class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium|Code>": "󰨞 ",
+    	"class<dev.zed.Zed>": "󰵁 ",
 		"class<codeblocks>": "󰅩 ",
 		"title<.*github.*>": " ",
 		"class<mousepad>": " ",
