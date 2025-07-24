@@ -34,6 +34,6 @@ fi
 if [ "$ln_success" = true ]; then
     # execute wallust
 	echo 'about to execute wallust'
-    # execute wallust skipping tty and terminal changes
-    wallust run "$wallpaper_path" -s &
+    # execute wal skipping tty and terminal changes
+     wal -i "$wallpaper_path" &
 fi

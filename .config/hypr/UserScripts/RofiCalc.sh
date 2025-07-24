@@ -12,19 +12,16 @@ fi
 
 # main function
 
-while true; do
-    result=$(
-        rofi -i -dmenu \
-            -config $rofi_theme \
-            -mesg "$result      =    $calc_result"
-    )
+result=$(
+  rofi -show calc \
+  -config $rofi_theme
+)
 
-    if [ $? -ne 0 ]; then
-        exit
-    fi
+if [ $? -ne 0 ]; then
+  exit
+fi
 
-    if [ -n "$result" ]; then
-        calc_result=$(qalc -t "$result")
-        echo "$calc_result" | wl-copy
-    fi
-done
+if [ -n "$result" ]; then
+  calc_result=$(qalc -t "$result")
+  echo "$calc_result" | wl-copy
+fi

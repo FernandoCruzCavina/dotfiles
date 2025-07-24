@@ -21,7 +21,7 @@ makepkg -si
 -enjoy the enviroment packages 
 
 ```zsh
-sudo pacman -S --needed neofetch neovim waybar mpd mpc rmpc-git wofi starship papirus-icon-theme ttf-jetbrains-mono ttf-0xproto-nerd yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick yt-dlp ttf-jetbrains-mono-nerd
+sudo pacman -S --needed fastfetch neovim python-pywal waybar mpd mpc rmpc-git rofi rofi-calc starship papirus-icon-theme ttf-jetbrains-mono ttf-0xproto-nerd yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick yt-dlp ttf-jetbrains-mono-nerd
 ```
 
 ```zsh
