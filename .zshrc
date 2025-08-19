@@ -117,6 +117,7 @@ export PATH="$HOME/bin:$PATH"
 #export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(rbenv init -)"

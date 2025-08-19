@@ -135,7 +135,7 @@
   "format": "<span>{}</span>",
   "return-type": "json",
   "max-length": 30,
-//"exec": "playerctl metadata --format '{\"text\": \" {{title}} - {{artist}}\", \"tooltip\": \"{{playerName}} - {{status}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+  //"exec": "playerctl metadata --format '{\"text\": \" {{title}} - {{artist}}\", \"tooltip\": \"{{playerName}} - {{status}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
   "exec": "$HOME/.config/hypr/scripts/mpd-status.sh",
   "interval": 10,
   "on-click-middle": "playerctl play-pause",
