@@ -32,3 +32,10 @@ yay -S --needed swaync wallust rofimoji rmpc-git zsh wlogout
 paru -S resvg
 ```
 
+xdg-mime default zathura application/pdf
+❯ xdg-mime default nsxiv.desktop image/png
+xdg-mime default nsxiv.desktop image/jpeg
+❯ xdg-mime default nsxiv.desktop image/webp
+
+-add-
+pacman zathura zathura-poppler nsxiv

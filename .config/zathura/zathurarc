@@ -1,0 +1,81 @@
+#
+# ~ General config ~
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 2
+#open document in fit-width mode by default
+set adjust-open "fit-page"
+
+#one page per row by default
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware           "true"
+set smooth-scroll               "true"
+set scroll-full-overlap         0.01
+set scroll-step                 100
+
+set window-title-home-tilde     1
+set statusbar-home-tilde        1
+set window-title-basename       1
+
+#zoom settings
+set zoom-min                    10
+set guioptions                  1
+set scroll-step                 50
+
+#recolor settings
+set recolor                      true
+#set recolor-reverse-video       "true"
+#set recolor-keephue             "true"
+
+
+# ~ Color scheme ~
+
+set font                        "monospace-12"
+set default-bg                  "#282828" 
+set default-fg                  "#F7F7F6"
+
+set completion-group-bg         "#282828"
+set completion-group-fg         "#ebdbb2"
+set completion-bg               "#282828"
+set completion-fg               "#ebdbb2"
+set completion-highlight-bg     "#458588"
+set completion-highlight-fg     "#ebdbb2"
+
+set notification-error-bg       "#3c3836"
+set notification-error-fg       "#ebdbb2"
+set notification-warning-bg     "#3c3836"
+set notification-warning-fg     "#ebdbb2"
+set notification-bg             "#3c3836"
+set notification-fg             "#ebdbb2"
+
+set index-bg                    "#1d2021"
+set index-fg                    "#ebdbb2"
+set index-active-bg             "#282828"
+set index-active-fg             "#ebdbb2"
+
+set inputbar-bg                 "#3c3836"
+set inputbar-fg                 "#ebdbb2"
+
+set statusbar-bg                "#282828"
+set statusbar-fg                "#ebdbb2"
+
+set highlight-color             "#458588"
+set highlight-active-color      "#458588"
+
+set default-bg                  "#1d2021"
+set default-fg                  "#001512"
+set recolor-lightcolor          "#282828"
+set recolor-darkcolor           "#ebdbb2"
+
+
+#~ Keybinds ~
+
+map i recolor
+map K zoom-in
+map J zoom-out
+map p print
+map r reload
+map R rotate

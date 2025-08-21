@@ -28,12 +28,12 @@ c.colors.statusbar.url.hover.fg = colors["color12"]
 c.colors.tabs.even.bg = "#00000000" # transparent tabs!!
 c.colors.tabs.odd.bg = "#00000000"
 c.colors.tabs.bar.bg = "#00000000"
-# c.colors.tabs.even.bg = colors[background"]
-# c.colors.tabs.odd.bg = colors[background"]
-c.colors.tabs.even.fg = colors["color0"]
-c.colors.tabs.odd.fg = colors["color0"]
-c.colors.tabs.selected.even.bg = special["foreground"]
-c.colors.tabs.selected.odd.bg = special["foreground"]
+c.colors.tabs.even.bg = special["background"]
+c.colors.tabs.odd.bg = special["background"]
+# c.colors.tabs.even.fg = colors["color0"]
+# c.colors.tabs.odd.fg = colors["color0"]
+c.colors.tabs.selected.even.bg = colors["color14"]
+c.colors.tabs.selected.odd.bg = colors["color14"]
 c.colors.tabs.selected.even.fg = special["background"]
 c.colors.tabs.selected.odd.fg = special["background"]
 c.colors.hints.bg = special["background"]
@@ -95,8 +95,8 @@ c.auto_save.session = True # save tabs on quit/restart
 #config.bind('=', 'cmd-set-text -s :open')
 #config.bind('h', 'history')
 #config.bind('cs', 'cmd-set-text -s :config-source')
-#config.bind('tH', 'config-cycle tabs.show multiple never')
-#config.bind('sH', 'config-cycle statusbar.show always never')
+config.bind('tH', 'config-cycle tabs.show multiple never')
+config.bind('sH', 'config-cycle statusbar.show always never')
 #config.bind('T', 'hint links tab')
 #config.bind('pP', 'open -- {primary}')
 #config.bind('pp', 'open -- {clipboard}')
@@ -119,7 +119,7 @@ config.set('colors.webpage.darkmode.enabled', False, 'file://*')
 c.tabs.padding = {'top': 5, 'bottom': 5, 'left': 9, 'right': 9}
 c.tabs.indicator.width = 0 # no tab indicators
 # c.window.transparent = True # apparently not needed
-c.tabs.width = '7%'
+c.tabs.width = '5%'
 
 # fonts
 c.fonts.default_family = []
