@@ -1,29 +1,35 @@
-/* Main Config Rofi Theme */
-
-@import "~/.config/rofi/config.rasi"  
+@import "~/.config/rofi/config.rasi"
 
 /* ---- Window ---- */
 window {
-  width: inherit;
-  height: inherit;
+  width: 70%;
+  height: 40%;
 }
 
 /* ---- Mainbox ---- */
 mainbox {
-  children:
-    [ "inputbar", "listview"];
+  children: [ inputbar, listview];
+}
+
+icon-ib {
+  filename: "audio-x-generic";
+}
+
+
+inputbar {
+  children: [icon-ib, entry];
 }
 
 /* ---- Entry input ---- */
 entry {
   expand: true;
-  placeholder: " ⬇️  Select Which Rofi Theme wanted to apply";
+  placeholder: "Play music";
 }
 
 /* ---- Listview ---- */
 listview {
-  columns: 2;
-  lines: 7;
+  columns: 4;
+  lines: 5;
   fixed-height: false;
   margin: 10px;
   scrollbar: true;
@@ -41,3 +47,4 @@ element-text {
   margin: 0px;
   padding: 0px;
 }
+

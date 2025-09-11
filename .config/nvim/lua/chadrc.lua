@@ -17,10 +17,16 @@ M.base46 = {
 M.nvdash = { 
   load_on_startup = true
 }
--- M.ui = {
---       tabufline = {
---          lazyload = false
---      }
--- }
+
+M.ui = {
+  cmp = {
+    icons = true,
+    lspking = true,
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+  },
+  -- tabufline = {
+  --   lazyload = true
+  -- }
+}
 
 return M

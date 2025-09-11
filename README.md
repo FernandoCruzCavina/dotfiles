@@ -13,17 +13,12 @@ makepkg -si
 -enjoy the enviroment packages 
 
 ```zsh
-sudo pacman -S --needed fastfetch neovim python-pywal waybar mpd mpc rofi rofi-calc starship papirus-icon-theme ttf-jetbrains-mono ttf-0xproto-nerd yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick yt-dlp ttf-jetbrains-mono-nerd swww zathura zathura-pdf-poppler nsxiv
+sudo pacman -S --needed fastfetch neovim python-pywal waybar mpd mpc rofi rofi-calc starship papirus-icon-theme ttf-jetbrains-mono ttf-0xproto-nerd yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick yt-dlp ttf-jetbrains-mono-nerd swww zathura zathura-pdf-poppler nsxiv man-db man-pages
 ```
 
 ```zsh
 yay -S --needed swaync wallust rofimoji rmpc-git zsh wlogout
 ```
-
-```zsh
-paru -S resvg
-```
-
 
 ~changes values
 

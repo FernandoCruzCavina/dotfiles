@@ -1,5 +1,4 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* KooL Hyprland Edit Rofi Config */
+/* Hyprland Edit Rofi Config */
 
 @import "~/.config/rofi/config.rasi"  
 

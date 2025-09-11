@@ -54,29 +54,43 @@ window {
 
 /* ----- Main Box ----- */
 mainbox {
-    padding:			5px;
+    padding:			               5px;
     enabled:                     true;
     orientation:                 vertical;
     children:                    [ "inputbar", "listbox" ];
     background-color:            #000000;
 }
 
+/* ----- Icon left side ----- */
+icon-ib {
+  expand: false;
+  filename: "system-search";
+  background-color: transparent;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  size: 1em;
+}
+icon-current-entry {
+  expand:          true;
+  size:            80%;
+}
 
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                     true;
-    padding:                     0px 0px 0px 0px;
+    spacing:                     0.4em;
+    padding:                     0.4em;
     margin:                      10px;
     background-color:            transparent;
     border-radius:               25px;
     orientation:                 horizontal;
-    children:                    ["entry", "dummy", "mode-switcher" ];
+    children:                    [icon-ib, entry, dummy, mode-switcher ];
     
 }
 
 /* ---- Entry input ---- */
 entry {
-    font: "JetBrains Mono 13";
+    font:                        "JetBrains Mono 13";
     enabled:                     true;
     expand:                      false;
     width:                       100%;
@@ -85,7 +99,7 @@ entry {
     background-color:            #000000;
     text-color:                  #cdd6f4;
     cursor:                      text;
-    placeholder:                 " Search "; // << Search symbol
+    placeholder:                 "Search ";
     placeholder-color:           inherit;
 }
 

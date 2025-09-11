@@ -1,91 +1,84 @@
 return {
-  'nvim-java/nvim-java',
+  "mfussenegger/nvim-jdtls",
+  ft = { "java" },
   config = function()
-    require('java').setup({
-          --  list of file that exists in root of the project
-      root_markers = {
-        'settings.gradle',
-        'settings.gradle.kts',
-        'pom.xml',
-        'build.gradle',
-        'mvnw',
-        'gradlew',
-        'build.gradle',
-        'build.gradle.kts',
-        '.git',
+    local jdtls = require("jdtls")
+
+    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+    local workspace_dir = vim.fn.expand("~/.local/share/nvim/java-workspace/") .. project_name
+
+    local jdtls_path = vim.fn.expand("~/.local/share/jdtls")
+    local launcher = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+
+    local config = {
+      cmd = {
+        "java",
+        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+        "-Dosgi.bundles.defaultStartLevel=4",
+        "-Declipse.product=org.eclipse.jdt.ls.core.product",
+        "-Dlog.protocol=true",
+        "-Dlog.level=ALL",
+        "-Xmx1g",
+        "--add-modules=ALL-SYSTEM",
+        "--add-opens", "java.base/java.util=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        "-jar", launcher,
+        "-configuration", jdtls_path .. "/config_linux",
+        "-data", workspace_dir,
       },
-
-      jdtls = {
-        version = 'v1.43.0',
-      },
-
-      lombok = {
-        version = 'nightly',
-      },
-
-      -- load java test plugins
-      java_test = {
-        enable = true,
-        version = '0.40.1',
-      },
-
-      -- load java debugger plugins
-      java_debug_adapter = {
-        enable = true,
-        version = '0.58.1',
-      },
-
-      spring_boot_tools = {
-        enable = true,
-        version = '1.55.1',
-      },
-
-      jdk = {
-        -- install jdk using mason.nvim
-        auto_install = true,
-        version = '17.0.2',
-      },
-
-      notifications = {
-        -- enable 'Configuring DAP' & 'DAP configured' messages on start up
-        dap = true,
-      },
-
-      -- We do multiple verifications to make sure things are in place to run this
-      -- plugin
-      verification = {
-        -- nvim-java checks for the order of execution of following
-        -- * require('java').setup()
-        -- * require('lspconfig').jdtls.setup()
-        -- IF they are not executed in the correct order, you will see a error
-        -- notification.
-        -- Set following to false to disable the notification if you know what you
-        -- are doing
-        invalid_order = true,
-
-        -- nvim-java checks if the require('java').setup() is called multiple
-        -- times.
-        -- IF there are multiple setup calls are executed, an error will be shown
-        -- Set following property value to false to disable the notification if
-        -- you know what you are doing
-        duplicate_setup_calls = true,
-
-        -- nvim-java checks if nvim-java/mason-registry is added correctly to
-        -- mason.nvim plugin.
-        -- IF it's not registered correctly, an error will be thrown and nvim-java
-        -- will stop setup
-        invalid_mason_registry = false,
-      },
-
-      mason = {
-        -- These mason registries will be prepended to the existing mason
-        -- configuration
-        registries = {
-          'github:nvim-java/mason-registry',
+      root_dir = function() return vim.fn.getcwd() end,
+      settings = {
+        java = {
+          project = { referencedLibraries = {} },
+          configuration = {
+            runtimes = {
+              {
+                name = "JavaSE-21",
+                path = "/usr/lib/jvm/java-21-openjdk",
+              },
+            },
+          },
         },
       },
-    })
-  
-    require('lspconfig').jdtls.setup({})
+      init_options = {
+        bundles = {},
+      },
+    }
+
+
+    jdtls.start_or_attach(config)
+
+    vim.keymap.set("n", "<leader>r", function()
+      local filepath = vim.fn.expand("%:p")
+      local filename = vim.fn.expand("%:t:r") -- nome da classe
+      local ws_folder = vim.fn.expand("~/.local/share/java-temp-workspace/")
+      vim.fn.mkdir(ws_folder, "p")
+
+      -- detectar package no topo do arquivo
+      local package = ""
+      for line in io.lines(filepath) do
+        local pkg = line:match("^%s*package%s+([%w_.]+)%s*;")
+        if pkg then
+          package = pkg
+          break
+        end
+      end
+
+      local full_class_name = package ~= "" and (package .. "." .. filename) or filename
+
+      local term_cmd = table.concat({
+        "zsh -c '",
+        "setopt nonomatch; ",
+        "export JAVA_HOME=/usr/lib/jvm/java-21-openjdk; ",
+        "export PATH=$JAVA_HOME/bin:$PATH; ",
+        "rm -f " .. ws_folder .. "*.class; ",
+        "javac -d " .. ws_folder .. " " .. filepath .. " && ",
+        "java -cp " .. ws_folder .. " " .. full_class_name,
+        "'"
+      }, "")
+
+      vim.cmd("split | terminal " .. term_cmd)
+    end, { desc = "Compilar e rodar Java com package" })
   end,
 }
+

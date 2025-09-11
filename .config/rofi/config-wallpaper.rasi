@@ -1,67 +1,88 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Main Config (wallpaper) */
 
 @import "~/.config/rofi/config.rasi"  
 
-/* ---- Configuration ---- */ 
-configuration {
-  modi: "drun";
-}
-
 window {
-  width: 75%;
-  height: inherit;
+	width:            70%;
+  height:           65%;
+	padding:          1em;
+	children:         [ wrap, listview-split];
+	spacing:          1em;
 }
 
-/* ---- Mainbox ---- */
-mainbox {
-  children:
-    [ "inputbar", "listview"];
+listview-split {
+  orientation: horizontal;
+  spacing: 0.4em;
+  children: [listview, icon-current-entry];
 }
 
+wrap {
+	expand: false;
+	orientation: vertical;
+	children: [ inputbar, message ];
+	border: 3px;
+	border-radius: 0.4em;
+}
+
+icon-ib {
+	filename: "video-display";
+}
+
+inputbar {
+	spacing: 0.4em;
+	padding: 0.4em;
+	children: [ icon-ib, entry ];
+}
 entry {
-  expand: true;
-  placeholder: "Choose Wallpaper";
-  horizontal-align: 0.01;
-  horizontal-align: 0.01;
+	placeholder: "Search Wallpaper";
+	placeholder-color: grey;
+}
+message {
+	background-color: red/20%;
+	border-color: lightsalmon;
+	border: 3px 0px 0px 0px;
+	padding: 0.4em;
+	spacing: 0.4em;
 }
 
-/* ---- Listview ---- */
 listview {
-  columns: 6;
-  lines: 2;
-  spacing: 20px;
-  padding: 10px;
-  columns: 6;
-  lines: 2;
-  flow: horizontal;
-  fixed-width: true;
-  fixed-height: true;
-  cycle: true;
+	flow: horizontal;
+	fixed-columns: true;
+	columns: 3;
+	lines: 2;
+	spacing: 1em;
 }
 
-/* ---- Element ---- */
 element {
-  orientation: vertical;
-  padding: 0px;
-  spacing: 0px;
-  border-radius: 10px;
-  padding: 0px;
-  margin: 0px;
+	orientation: vertical;
+
+	background-image: linear-gradient(white/5%, white/20%);
+	border-color: lightblue /15%;
+	border: 2px;
+	border-radius: 0.4em;
+
+  children: [element-icon, element-text ];
 }
-
-
 
 element-icon {
-    text-color:                  inherit;
-    size:                        10%;
-    margin:                      -30px;
-    cursor:                      inherit;
+	size: calc(((100% - 8em) / 7 ));
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+}
+element-text {
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+  padding: 0.2em;
 }
 
-element-text {
-  vertical-align: 0.5;
-  horizontal-align: 0.5;
-  padding: 6px;
-  margin: 6px;
+element selected {
+	background-image: linear-gradient(white/25%, white/10%);
+	border-color: lightblue;
+	border: 3px;
+	border-radius: 0.4em;
+}
+
+icon-current-entry {
+  expand:          true;
+  size:            80%;
 }
