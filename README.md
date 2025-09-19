@@ -20,6 +20,12 @@ sudo pacman -S --needed fastfetch neovim python-pywal waybar mpd mpc rofi rofi-c
 yay -S --needed swaync wallust rofimoji rmpc-git zsh wlogout
 ```
 
+## Demonstration
+
+![screenshot_1](./.example/screenshot_1.png)
+
+![screenshot_2](./.example/screenshot_2.png)
+
 ~changes values
 
 xdg-mime default zathura application/pdf
