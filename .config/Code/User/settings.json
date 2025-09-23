@@ -1,0 +1,23 @@
+{
+    "workbench.productIconTheme"    : "fluent-icons",
+    "workbench.colorTheme"          : "One Dark Pro Night Flat",
+    "workbench.iconTheme"           : "symbols",
+    "workbench.editor.labelFormat"  : "short",
+    "workbench.activityBar.location": "hidden",
+    "workbench.statusBar.visible"   : false,
+    "window.zoomLevel"              : 1,
+    "editor.fontFamily"             : "\"JetBrains Mono\"",
+    "editor.fontLigatures"          : true,
+    "editor.fontSize"               : 13,
+    "editor.lineHeight"             : 1.8,
+    "editor.rulers"                 : [80, 120],
+    "editor.renderLineHighlight"    : "gutter",
+    "files.autoSave"                : "afterDelay",
+    "database-client.autoSync"      : true,
+    "terminal.integrated.fontFamily": "\"0xProto Nerd Font Mono\"",
+    "terminal.integrated.fontSize"  : 14,
+    "explorer.compactFolders"       : true,
+    "[markdown]" : {
+        "editor.defaultFormatter"   : "yzhang.markdown-all-in-one"
+    },
+}

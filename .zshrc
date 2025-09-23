@@ -1,10 +1,10 @@
 # ---------------------------------
 # PATHS
 # ---------------------------------
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.config/hypr/UserScripts:$PATH"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
-export PATH=$JAVA_HOME/bin:$PATH
+# export PATH=$JAVA_HOME/bin:$PATH
 export PREVIEW=true
 export NO_IMAGE=true
 # ---------------------------------

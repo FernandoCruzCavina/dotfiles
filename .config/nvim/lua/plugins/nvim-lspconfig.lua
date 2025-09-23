@@ -38,7 +38,7 @@ return {
       automatic_enable = false,
     })
 
-    local lspconfig = require('lspconfig')
+    local lspconfig = vim.lsp.config
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lsp_attach = function(client, bufnr)
       -- Create your keybindings here...
@@ -49,26 +49,51 @@ return {
       handlers = {
         function(server_name)
           if server_name ~= "jdtls" then
-            lspconfig[server_name].setup {
+            lspconfig(server_name, {
               on_attach = lsp_attach,
               capabilities = lsp_capabilities,
-            }
+            })
+            vim.lsp.enable(server_name)
           end
         end,
       },
     }
 
       -- Lua LSP settings
-    lspconfig.lua_ls.setup {
-      settings = {
-        Lua = {
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
+    lspconfig('lua_ls', {
+      on_init = function(client)
+        if client.workspace_folders then
+          local path = client.workspace_folders[1].name
+          if
+            path ~= vim.fn.stdpath('config')
+            and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+          then
+            return
+          end
+        end
+
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+          runtime = {
+            version = 'LuaJIT',
+            path = {
+              'lua/?.lua',
+              'lua/?/init.lua',
+            },
           },
-        },
-      },
-    }
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = { vim.env.VIMRUNTIME},
+          }
+        })
+      end,
+      settings = {
+        Lua = {}
+      }
+    })
+    
+    -- Active your lsp
+    vim.lsp.enable('lua_ls')
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview

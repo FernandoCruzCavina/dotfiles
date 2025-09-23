@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Download youtube video to music
+
+DEST="$HOME/.config/mpd/music"
+
+FILE=$(yt-dlp -x --audio-format mp3 --embed-thumbnail --add-metadata \
+  -o "$DEST/%(title)s.mp3" --restrict-filenames \
+  --print after_move:filepath "$1")
+
+TITLE=$(yt-dlp --print "title" "$1")
+ARTIST=$(yt-dlp --print "uploader" "$1")
+ALBUM=$(yt-dlp --print "album" "$1")
+
+if [ -z "$ALBUM" ] || [ "$ALBUM" = "NA" ]; then
+  ALBUM="$ARTIST"
+fi
+
+id3v2 -t "$TITLE" -a "$ARTIST" -A "$ALBUM" "$FILE"
+
+mpc update
+
+mpc add "$(realpath --relative-to="$DEST" "$FILE")"
