@@ -4,7 +4,7 @@
 
 DEST="$HOME/.config/mpd/music"
 
-FILE=$(yt-dlp -x --audio-format mp3 --embed-thumbnail --add-metadata \
+FILE=$(yt-dlp -x --audio-format mp3 --extractor-args "youtube:player-client=default,-tv_simply" --embed-thumbnail --add-metadata \
   -o "$DEST/%(title)s.mp3" --restrict-filenames \
   --print after_move:filepath "$1")
 

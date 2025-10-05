@@ -3,9 +3,13 @@
 @import "~/.config/rofi/config.rasi" 
 
 /* ---- Entry ---- */
+icon-ib {
+  filename: "accessories-calculator";
+}
+
 entry {
   width: 27%;
-  placeholder: "🧮 Calculate";
+  placeholder: "Calculate";
 }
 
 /* ---- Window ---- */
