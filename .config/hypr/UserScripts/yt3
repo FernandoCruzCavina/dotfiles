@@ -1,23 +1,78 @@
 #!/usr/bin/env bash
 
-# Download youtube video to music
+# Download YouTube video as music (MP3), embed metadata and update playlist
 
-DEST="$HOME/.config/mpd/music"
+set -e
 
-FILE=$(yt-dlp -x --audio-format mp3 --extractor-args "youtube:player-client=default,-tv_simply" --embed-thumbnail --add-metadata \
-  -o "$DEST/%(title)s.mp3" --restrict-filenames \
-  --print after_move:filepath "$1")
+DEST_DIR=~/.config/mpd/music/
+URL="$1"
 
-TITLE=$(yt-dlp --print "title" "$1")
-ARTIST=$(yt-dlp --print "uploader" "$1")
-ALBUM=$(yt-dlp --print "album" "$1")
+# === Logging ===
+log_info() {
+  printf '[INFO] '"$1"'\n' "${@:2}"
+}
 
-if [ -z "$ALBUM" ] || [ "$ALBUM" = "NA" ]; then
-  ALBUM="$ARTIST"
-fi
 
-id3v2 -t "$TITLE" -a "$ARTIST" -A "$ALBUM" "$FILE"
+log_error() {
+  printf '[ERROR] '"$1"'\n' "${@:2}" >&2
+}
 
-mpc update
 
-mpc add "$(realpath --relative-to="$DEST" "$FILE")"
+# === Download audio with embedded metadata ===
+download_audio() {
+  yt-dlp -x --audio-format mp3 \
+    --extractor-args "youtube:player-client=default,-tv_simply" \
+    --embed-thumbnail --add-metadata \
+    -o "$DEST_DIR/%(title)s.mp3" --restrict-filenames \
+    --print after_move:filepath "$URL"
+}
+
+# === Album field correction ===
+fix_album_name_if_needed() {
+  local file="$1"
+
+  local current_album
+  current_album=$(id3v2 -l "$file" | awk -F': ' '/^TALB/ { print $2 }')
+
+  if [ -z "$current_album" ] || [ "$current_album" = "NA" ]; then
+    log_info "Album tag is missing or 'NA'. Setting album to 'Brave'..."
+    id3v2 -A "Brave" "$file"
+  else
+    log_info "Album tag found: $current_album"
+  fi
+}
+
+# === Update playlist ===
+update_music_library() {
+  local file="$1"
+  local relative_path
+
+  log_info "Updating local music library index..."
+  mpc update
+
+  relative_path=$(realpath --relative-to="$DEST_DIR" "$file")
+  log_info "Adding '%s' to the playlist..." "$relative_path"
+  mpc add "$relative_path"
+}
+
+# === Main ===
+main() {
+  if [ -z "$URL" ]; then
+    log_error "No URL provided. Usage: $0 <URL>"
+    exit 1
+  fi
+
+  log_info "Starting audio download process for: $URL"
+
+  local file
+  file=$(download_audio)
+  log_info "Downloaded file: $file"
+
+  fix_album_name_if_needed "$file"
+  update_music_library "$file"
+
+  log_info "Process completed successfully."
+}
+
+main
+
